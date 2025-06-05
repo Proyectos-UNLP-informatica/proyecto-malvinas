@@ -46,26 +46,34 @@ html {
 
 /* Theme */
 :root {
-  --background: 210 33% 99%;
-  --foreground: 240 10% 3.9%;
-  --card: 0 0% 100%;
-  --card-foreground: 240 10% 3.9%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 240 10% 3.9%;
-  --primary: 200 29% 45%;
-  --primary-foreground: 0 0% 92.5%;
-  --secondary: 240 4.8% 95.9%;
-  --secondary-foreground: 240 5.9% 10%;
-  --muted: 240 4.8% 95%;
-  --muted-foreground: 240 3.8% 28.1%;
-  --accent: 240 4.8% 95.9%;
-  --accent-foreground: 240 5.9% 10%;
-  --destructive: 0 72.22% 50.59%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 240 5.9% 88%;
-  --input: 240 5.9% 90%;
-  --ring: 240 5.9% 10%;
-  --radius: 0.5rem;
+  /* Basado en Figma */
+  --primary: 238 38% 15%; /* #181933 */
+  --secondary: 210 59% 82%; /* #B4D3EB */
+  --muted: 210 33% 94%; /* #D3E0ED (Usado para fondos sutiles) */
+
+  /* Colores derivados / reajustados para un tema claro por defecto */
+  --background: 210 33% 99%; /* Blanco suave, similar a tu original */
+  --foreground: 240 10% 3.9%; /* Texto oscuro */
+
+  --card: 0 0% 100%; /* Fondo de tarjeta blanco */
+  --card-foreground: 240 10% 3.9%; /* Texto de tarjeta oscuro */
+
+  --popover: 0 0% 100%; /* Fondo de popover blanco */
+  --popover-foreground: 240 10% 3.9%; /* Texto de popover oscuro */
+
+  --primary-foreground: 0 0% 98%; /* Texto sobre primary (casi blanco) */
+  --secondary-foreground: 240 5.9% 10%; /* Texto sobre secondary (oscuro) */
+  --muted-foreground: 240 3.8% 28.1%; /* Texto sobre muted (gris oscuro) */
+  --accent: 240 4.8% 95.9%; /* Fondo de acento, similar a tu original */
+  --accent-foreground: 240 5.9% 10%; /* Texto sobre acento */
+
+  --destructive: 0 72.22% 50.59%; /* Rojo para errores/acciones peligrosas */
+  --destructive-foreground: 0 0% 98%; /* Texto sobre destructivo */
+
+  --border: 240 5.9% 88%; /* Borde claro */
+  --input: 240 5.9% 90%; /* Fondo de input claro */
+  --ring: 240 5.9% 10%; /* Color del anillo de foco (oscuro) */
+  --radius: 0.5rem; /* Radio de borde estándar */
 }
 .dark {
   --background: 240 20.54% 5.2%;
