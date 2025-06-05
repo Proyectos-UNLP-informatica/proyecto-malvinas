@@ -10,6 +10,7 @@ import ProjectCard from '@/components/home/ProjectCard.astro'
 import Section from '@/components/home/Section.astro'
 import SkillLayout from '@/components/home/SkillLayout.astro'
 import avatar from '@/assets/avatar.png'
+import landing from '@/assets/landing.webp'
 import config from '@/site-config'
 
 const languages = ['Html', 'JavaScript', 'CSS', 'Shell']
@@ -23,6 +24,13 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 
 <PageLayout meta={{ title: 'Home' }} highlightColor='#659EB9'>
   <main class='flex w-full flex-col items-center'>
+    <Image
+      src={landing}
+      alt='background'
+      class='absolute top-0 h-full w-full object-cover'
+      loading='eager'
+    />
+    <div class='h-100vh'></div>
     <section class='animate mb-10 flex flex-col items-center gap-y-7' id='content-header'>
       <Image
         src={avatar}
@@ -52,7 +60,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
       <a
         href='https://github.com/cworld1/astro-theme-pure'
         target='_blank'
-        class='flex flex-row items-center gap-x-3 rounded-full border bg-background px-4 py-2 text-sm shadow-sm transition-shadow hover:shadow-md'
+        class='bg-background flex flex-row items-center gap-x-3 rounded-full border px-4 py-2 text-sm shadow-sm transition-shadow hover:shadow-md'
       >
         <span class='relative flex items-center justify-center'>
           <span
@@ -60,7 +68,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
           ></span>
           <span class='size-2 rounded-full bg-green-400'></span>
         </span>
-        <p class='font-medium text-muted-foreground'>Get Template</p>
+        <p class='text-muted-foreground font-medium'>Get Template</p>
       </a>
     </section>
 
