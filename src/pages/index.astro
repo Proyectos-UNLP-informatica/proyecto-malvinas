@@ -1,25 +1,50 @@
 ---
 import { Image } from 'astro:assets'
 
-import { Quote } from 'astro-pure/advanced'
 import { PostPreview } from 'astro-pure/components/pages'
 import { getBlogCollection, sortMDByDate } from 'astro-pure/server'
-import { Button, Card, Icon, Label } from 'astro-pure/user'
+import { Button, Timeline } from 'astro-pure/user'
 import PageLayout from '@/layouts/BaseLayout.astro'
 import ProjectCard from '@/components/home/ProjectCard.astro'
 import Section from '@/components/home/Section.astro'
-import SkillLayout from '@/components/home/SkillLayout.astro'
-import avatar from '@/assets/avatar.png'
 import landing from '@/assets/landing.webp'
-import config from '@/site-config'
-
-const languages = ['Html', 'JavaScript', 'CSS', 'Shell']
-const frontend = ['TypeScript', 'Vite', 'Webpack', 'Astro']
-const backend = ['Vercel', 'Waline']
 
 const MAX_POSTS = 10
 const allPosts = await getBlogCollection()
 const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
+
+const myEvents = [
+  {
+    title: 'Se crea la Gobernación Militar',
+    date: '3 de abril de 1982',
+    datetime: '1982-04-03',
+    link: '/eventos/gobernacion-militar',
+    image: {
+      src: '/src/assets/projects/alex-tyson-2BAXJ7ha74s-unsplash.jpg',
+      alt: 'Bandera Argentina ondeando en las Malvinas.'
+    }
+  },
+  {
+    title: 'Resolución 502 de la ONU',
+    date: '3 de abril de 1982',
+    datetime: '1982-04-03',
+    link: '/eventos/resolucion-502',
+    image: {
+      src: '/src/assets/projects/angelica-teran-Bk9hpaXHK4o-unsplash.jpg',
+      alt: 'Edificio de las Naciones Unidas.'
+    }
+  },
+  {
+    title: 'Hundimiento del ARA General Belgrano',
+    date: '2 de mayo de 1982',
+    datetime: '1982-05-02',
+    link: '/eventos/ara-belgrano',
+    image: {
+      src: '/src/assets/projects/wen-qiao-g_w8I64FiO0-unsplash.jpg',
+      alt: 'El crucero ARA General Belgrano navegando.'
+    }
+  }
+]
 ---
 
 <PageLayout meta={{ title: 'Home' }} highlightColor='#659EB9'>
@@ -30,167 +55,88 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
       class='absolute top-0 h-full w-full object-cover'
       loading='eager'
     />
-    <div class='h-100vh'></div>
-    <section class='animate mb-10 flex flex-col items-center gap-y-7' id='content-header'>
-      <Image
-        src={avatar}
-        alt='profile'
-        class='h-28 w-auto rounded-full border p-1'
-        loading='eager'
-      />
+    <div class='h-86vh z-10 flex w-full justify-center'>
+      <h1 class='font-balboa font-balboa text-8xl text-black'>Las Malvinas</h1>
+    </div>
+  </main>
 
-      <div class='flex flex-col items-center gap-y-4'>
-        <h1 class='text-3xl font-bold'>{config.author}</h1>
-        <div class='flex flex-wrap justify-center gap-x-7 gap-y-3'>
-          <Label title='China'>
-            <Icon name='location' class='size-5' slot='icon' />
-          </Label>
-          <Label
-            title='Source code'
-            as='a'
-            href='https://github.com/cworld1/astro-theme-pure'
-            target='_blank'
-          >
-            <Icon name='github' class='size-5' slot='icon' />
-          </Label>
-        </div>
+  <section
+    id='quote-section'
+    class='relative flex flex-col items-center justify-center gap-3 overflow-visible py-7'
+  >
+    <q class='font-italic max-w-lg text-lg md:max-w-2xl md:text-3xl'>
+      Si alguien creyó que la frase: 'Defender la Patria hasta perder la vida', era solo una
+      declaración, esta es hora de la verdad...
+    </q>
+    <p class='font-600 md:w-2xl text-end'>
+      Brigadier "VGM" Ernesto H. Crespo.<time datetime='1982-04'> Abril 1982 </time>
+    </p>
+  </section>
+
+  <div id='timeline' class='mt-12'>
+    <section class='flex flex-col gap-y-10'>
+      <div class='font-balboa font-400 text-5xl font-semibold md:min-w-36'>
+        <h2>LINEA DE TIEMPO</h2>
       </div>
-
-      {/* Get template */}
-      <a
-        href='https://github.com/cworld1/astro-theme-pure'
-        target='_blank'
-        class='bg-background flex flex-row items-center gap-x-3 rounded-full border px-4 py-2 text-sm shadow-sm transition-shadow hover:shadow-md'
-      >
-        <span class='relative flex items-center justify-center'>
-          <span
-            class='absolute size-2 animate-ping rounded-full border border-green-400 bg-green-400 opacity-75'
-          ></span>
-          <span class='size-2 rounded-full bg-green-400'></span>
-        </span>
-        <p class='text-muted-foreground font-medium'>Get Template</p>
-      </a>
+      <div>
+        <Timeline events={myEvents} />
+      </div>
     </section>
 
-    <div id='content' class='animate flex flex-col gap-y-10 md:w-4/5 lg:w-5/6'>
-      <Section title='About'>
-        <p class='text-muted-foreground'>Developer / Designer</p>
-        <p class='text-muted-foreground'>
-          Lorem ipsum dolor sit amet, vidit suscipit at mei. Quem denique mea id. Usu ei regione
-          indoctum dissentiunt, cu meliore fuisset mei, vel quod voluptua ne. Ex dicat impedit mel,
-          at eum oratio possit voluptatum.
-        </p>
-        <Button title='More about me' class='w-fit self-end' href='/about' style='ahead' />
-      </Section>
-      {
-        allPostsByDate.length > 0 && (
-          <Section title='Posts'>
-            <ul class='flex flex-col gap-y-1.5 sm:gap-y-2'>
-              {allPostsByDate.map((p) => (
-                <li class='flex flex-col gap-x-2 sm:flex-row'>
-                  <PostPreview post={p} />
-                </li>
-              ))}
-            </ul>
-            <Button title='More posts' class='w-fit self-end' href='/blog' style='ahead' />
-          </Section>
-        )
-      }
+    {
+      allPostsByDate.length > 0 && (
+        <Section title='Posts'>
+          <ul class='flex flex-col gap-y-1.5 sm:gap-y-2'>
+            {allPostsByDate.map((p) => (
+              <li class='flex flex-col gap-x-2 sm:flex-row'>
+                <PostPreview post={p} />
+              </li>
+            ))}
+          </ul>
+          <Button title='More posts' class='w-fit self-end' href='/blog' style='ahead' />
+        </Section>
+      )
+    }
 
-      {
-        /* <Section title='Experience'>
-      <Card
-        heading='Lorem Ipsum'
-        subheading='Sit amet consectetur'
-        date='Dec 2022 - Nov 2023'
-        imagePath='/src/assets/about-astro.png'
-        altText='Lorem, ipsum dolor sit'
-        imageClass='h-12 w-auto md:-start-16'
-      >
-        <ul class='ms-4 list-disc text-muted-foreground'>
-          <li>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore debitis recusandae, ut
-            molestiae laboriosam pariatur!
-
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, pariatur!</li>
-          </li>
-        </ul>
-      </Card>
-      <Card
-        heading='Lorem Ipsum'
-        subheading='Sit amet consectetur'
-        date='Dec 2022 - Nov 2023'
-        imagePath='/src/assets/about-astro.png'
-        altText='Lorem, ipsum dolor sit'
-        imageClass='h-12 w-auto md:-start-16'
-      />
-    </Section> */
-      }
-      <Section title='Education'>
-        <Card
-          as='a'
-          heading='Lorem ipsum'
-          subheading='Lorem ipsum dolor sit amet, vidit suscipit at mei.'
-          date='August 2021 - July 2025'
+    <Section title='Website List'>
+      <div class='grid grid-cols-1 gap-3 sm:grid-cols-2'>
+        <ProjectCard
           href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-        >
-          {
-            /* <ul class='ms-4 list-disc text-muted-foreground'>
-          <li>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore debitis recusandae, ut
-            molestiae laboriosam pariatur!
-          </li>
-          <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, pariatur!</li>
-        </ul> */
-          }
-        </Card>
-      </Section>
-
-      <Section title='Website List'>
-        <div class='grid grid-cols-1 gap-3 sm:grid-cols-2'>
-          <ProjectCard
-            href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-            heading='Lorem ipsum'
-            subheading='dolor sit amet, oratio ornatus explicari pro ex'
-            imagePath='/src/assets/projects/alex-tyson-2BAXJ7ha74s-unsplash.jpg'
-          />
-          <ProjectCard
-            href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-            heading='Lorem ipsum'
-            subheading='dolor sit amet, oratio ornatus explicari pro ex'
-            imagePath='/src/assets/projects/angelica-teran-Bk9hpaXHK4o-unsplash.jpg'
-          />
-          <ProjectCard
-            href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-            heading='Lorem ipsum'
-            subheading='dolor sit amet, oratio ornatus explicari pro ex'
-            imagePath='/src/assets/projects/kseniia-zapiatkina-yATU3rg8tNI-unsplash.jpg'
-          />
-          <ProjectCard
-            href='/projects'
-            heading='More projects'
-            subheading='Check out more projects'
-            imagePath='/src/assets/projects/wen-qiao-g_w8I64FiO0-unsplash.jpg'
-          />
-        </div>
-      </Section>
-
-      <Section title='Certifications'>
-        <Card
-          as='a'
           heading='Lorem ipsum'
-          subheading='Lorem ipsum dolor sit amet, vidit suscipit at mei. Quem denique mea id. Usu ei regione indoctum dissentiunt, cu meliore fuisset mei, vel quod voluptua ne. Ex dicat impedit mel, at eum oratio possit voluptatum. Dicat ceteros cu vim. Impetus fuisset ullamcorper pri cu, his posse iisque ad, aliquam honestatis usu id.'
-          date='July 2024'
-          href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+          subheading='dolor sit amet, oratio ornatus explicari pro ex'
+          imagePath='/src/assets/projects/alex-tyson-2BAXJ7ha74s-unsplash.jpg'
         />
-      </Section>
+        <ProjectCard
+          href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+          heading='Lorem ipsum'
+          subheading='dolor sit amet, oratio ornatus explicari pro ex'
+          imagePath='/src/assets/projects/angelica-teran-Bk9hpaXHK4o-unsplash.jpg'
+        />
+        <ProjectCard
+          href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+          heading='Lorem ipsum'
+          subheading='dolor sit amet, oratio ornatus explicari pro ex'
+          imagePath='/src/assets/projects/kseniia-zapiatkina-yATU3rg8tNI-unsplash.jpg'
+        />
+        <ProjectCard
+          href='/projects'
+          heading='More projects'
+          subheading='Check out more projects'
+          imagePath='/src/assets/projects/wen-qiao-g_w8I64FiO0-unsplash.jpg'
+        />
+      </div>
+    </Section>
+  </div>
 
-      <Section title='Skills'>
-        <SkillLayout title='Languages' skills={languages} />
-        <SkillLayout title='Frontend' skills={frontend} />
-        <SkillLayout title='Backend' skills={backend} />
-      </Section>
-    </div>
-    <Quote class='mt-12' />
-  </main>
+  <style>
+    #quote-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100vw;
+      background-color: hsl(var(--muted));
+      z-index: -1;
+    }
+  </style>
 </PageLayout>

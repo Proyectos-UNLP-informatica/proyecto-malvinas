@@ -11,7 +11,7 @@ import { Icon } from '../user'
 >
   <div class='flex w-full max-w-[70rem] items-center justify-between px-4 lg:px-10'>
     <a
-      class='group-[.not-top]:color-white group-[.not-top]:hover:text-secondary z-30 text-xl font-semibold group-[.not-top]:ms-2 sm:group-[.not-top]:ms-3'
+      class='group-[.not-top]:color-white group-[.not-top]:hover:text-secondary z-30 text-xl font-semibold'
       style='transition:margin-inline 0.3s'
       href='/'
       aria-label='Brand'
@@ -66,6 +66,7 @@ import { Icon } from '../user'
           <h3
             id='settingsPanelTitle'
             class='mb-3 text-lg font-semibold text-neutral-800 dark:text-neutral-100'
+            aria-label='Panel de configuración'
           >
             Configuración
           </h3>
@@ -190,7 +191,7 @@ import { Icon } from '../user'
   // Asegúrate que este import coincida con la ubicación de tu archivo utils
   import { setTheme as applyThemeUtil, showToast } from '../../utils'
 
-  const SHOW_SCROLL_Y = 200 // px
+  const SHOW_SCROLL_Y = 20 // px
 
   class Header extends HTMLElement {
     constructor() {
@@ -295,6 +296,7 @@ import { Icon } from '../user'
 
         fontFamilySelector.addEventListener('change', (event) => {
           const newFontFamily = (event.target as HTMLSelectElement).value
+          // if (newFontFamily !== "Montse"
           rootElement.style.setProperty('font-family', newFontFamily)
           localStorage.setItem('fontFamily', newFontFamily)
           showToast({ message: `Fuente cambiada` })
@@ -316,7 +318,7 @@ import { Icon } from '../user'
       transform 0.3s,
       margin-inline 0.3s,
       border 0.15s,
-      background-color 0.15s;
+      background-color 0.3s;
   }
 
   header-component.not-top {
