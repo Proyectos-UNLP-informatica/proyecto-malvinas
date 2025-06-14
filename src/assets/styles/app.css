@@ -2,39 +2,42 @@
 @font-face {
   font-family: 'Tisa Sans Pro';
   src: url('/fonts/TisaSansPro-Regular.ttf');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/Montserrat-Bold.ttf');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/Montserrat-Medium.ttf');
+  font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Montserrat';
   src: url('/fonts/Montserrat-Regular.ttf');
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
   font-family: 'Montserrat';
-  src: url('/fonts/Montserrat-Medium.ttf');
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/Montserrat-bold.ttf');
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/Montserrat-italic.ttf');
+  src: url('/fonts/Montserrat-Italic.ttf');
+  font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Balboa Condensed';
+  font-family: 'Balboa';
   src: url('/fonts/BalboaCondensed-Bold.ttf');
   font-style: normal;
   font-display: swap;
@@ -42,6 +45,10 @@
 
 html {
   font-family: 'Montserrat', sans-serif;
+  --font-family-montserrat: 'Montserrat';
+  --font-family-balboa: 'Balboa Condensed';
+  --font-family-tisa: 'Tisa Sans Pro';
+  --font-family-roboto: 'Roboto';
 }
 
 /* Theme */
@@ -49,7 +56,7 @@ html {
   /* Basado en Figma */
   --primary: 238 38% 15%; /* #181933 */
   --secondary: 210 59% 82%; /* #B4D3EB */
-  --muted: 210 33% 94%; /* #D3E0ED (Usado para fondos sutiles) */
+  --muted: 0 11% 96%; /* #D3E0ED (Usado para fondos sutiles) */
 
   /* Colores derivados / reajustados para un tema claro por defecto */
   --background: 210 33% 99%; /* Blanco suave, similar a tu original */

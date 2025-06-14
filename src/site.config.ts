@@ -47,10 +47,10 @@ export const theme: ThemeUserConfig = {
   /** Configure the header of your site. */
   header: {
     menu: [
-      { title: 'Linea de tiempo', link: '/blog' },
+      { title: 'Linea de tiempo', link: '/#timeline' },
       { title: 'Relatos', link: '/docs' },
       { title: 'Portal de la memoria', link: '/projects' },
-      { title: 'Archivo', link: '/links' },
+      { title: 'Archivo', link: '/links' }
     ]
   },
 

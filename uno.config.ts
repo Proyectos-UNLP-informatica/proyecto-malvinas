@@ -1,4 +1,4 @@
-import { defineConfig, presetTypography, presetUno } from 'unocss'
+import { defineConfig, presetTypography, presetWind3 } from 'unocss'
 
 const fg = 'hsl(var(--foreground) / var(--un-text-opacity, 1))'
 const fgMuted = 'hsl(var(--muted-foreground) / var(--un-text-opacity, 1))'
@@ -152,14 +152,22 @@ const themeColors = {
   }
 }
 
+const themeFontFamilies = {
+  balboa: 'var(--font-family-balboa)',
+  montserrat: 'var(--font-family-montserrat)',
+  tisa: 'var(--font-family-tisa)',
+  roboto: 'var(--font-family-roboto)'
+}
+
 export default defineConfig({
   presets: [
-    presetUno(), // required
+    presetWind3(), // presetUno() // required
     presetTypography(typographyConfig)
   ],
   rules: [],
   theme: {
-    colors: themeColors
+    colors: themeColors,
+    fontFamily: themeFontFamilies
   },
   // https://unocss.dev/guide/extracting#limitations
   safelist: [
