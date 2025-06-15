@@ -1,47 +1,92 @@
 ---
 import { Image } from 'astro:assets'
 
-import { PostPreview } from 'astro-pure/components/pages'
-import { getBlogCollection, sortMDByDate } from 'astro-pure/server'
-import { Button, Timeline } from 'astro-pure/user'
+// import { getBlogCollection, sortMDByDate } from 'astro-pure/server'
+import { Timeline } from 'astro-pure/user'
 import PageLayout from '@/layouts/BaseLayout.astro'
-import ProjectCard from '@/components/home/ProjectCard.astro'
-import Section from '@/components/home/Section.astro'
 import landing from '@/assets/landing.webp'
 
-const MAX_POSTS = 10
-const allPosts = await getBlogCollection()
-const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
+// const allPosts = await getBlogCollection()
+// const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 
-const myEvents = [
+const events = [
   {
-    title: 'Se crea la Gobernación Militar',
-    date: '3 de abril de 1982',
-    datetime: '1982-04-03',
-    link: '/eventos/gobernacion-militar',
+    title: 'la génesis del asalto aéreo a las Islas Malvinas',
+    date: '1 de abril de 1982',
+    datetime: '1982-04-01',
+    link: {
+      href: 'https://www.argentina.gob.ar/noticias/operacion-aries-82-la-genesis-del-asalto-aereo-las-islas-malvinas',
+      isExternal: true
+    },
     image: {
-      src: '/src/assets/projects/alex-tyson-2BAXJ7ha74s-unsplash.jpg',
-      alt: 'Bandera Argentina ondeando en las Malvinas.'
+      src: 'https://www.argentina.gob.ar/sites/default/files/styles/jumbotron/public/2022/04/tripulacion-del-tc-68-luego-de-su-primera-mision-del-2-de-abril-comodoro-rivadavia-hercules-malvinas.jpg',
+      alt: 'Comodoro rivadavia heroe de malvinas.'
     }
   },
   {
-    title: 'Resolución 502 de la ONU',
-    date: '3 de abril de 1982',
-    datetime: '1982-04-03',
-    link: '/eventos/resolucion-502',
+    title: 'Inicio de las hostilidades',
+    date: '1 de mayo de 1982',
+    datetime: '1982-05-01',
+    link: {
+      href: 'https://www.argentina.gob.ar/ejercito/malvinas/defensa',
+      isExternal: true
+    },
     image: {
-      src: '/src/assets/projects/angelica-teran-Bk9hpaXHK4o-unsplash.jpg',
-      alt: 'Edificio de las Naciones Unidas.'
+      src: 'https://www.argentina.gob.ar/sites/default/files/ejercito_malvinas_antiaerea.jpg',
+      alt: 'Artilleria Antiaerea Argentina en Malvinas.'
     }
   },
   {
-    title: 'Hundimiento del ARA General Belgrano',
-    date: '2 de mayo de 1982',
-    datetime: '1982-05-02',
-    link: '/eventos/ara-belgrano',
+    title: 'Los Combates en San Carlos',
+    date: '15 de mayo de 1982',
+    datetime: '1982-05-15',
+    link: {
+      href: 'https://www.argentina.gob.ar/ejercito/malvinas/defensa/sancarlos',
+      isExternal: true
+    },
     image: {
-      src: '/src/assets/projects/wen-qiao-g_w8I64FiO0-unsplash.jpg',
-      alt: 'El crucero ARA General Belgrano navegando.'
+      src: 'https://www.argentina.gob.ar/sites/default/files/ejercito_soldados_ri25.jpg',
+      alt: 'Soldados Argentinos del Regimiento de Infantería 25.'
+    }
+  },
+   {
+    title: 'Darwin - Pradera del Ganso',
+    date: '27 de mayo de 1982',
+    datetime: '1982-05-27',
+    link: {
+      href: 'https://www.argentina.gob.ar/ejercito/malvinas/defensa/darwin',
+      isExternal: true
+    },
+    image: {
+      src: 'https://www.argentina.gob.ar/sites/default/files/darwin_01.jpg',
+      alt: 'Soldados argentinos en Darwin'
+    }
+  },
+   {
+    title: 'Monte Longdon - Hasta el ultimo hombre',
+    date: '11 de junio de 1982',
+    datetime: '1982-06-11',
+    link: {
+      href: 'https://www.argentina.gob.ar/ejercito/malvinas/defensa/montelongdon',
+      isExternal: true
+    },
+    image: {
+      src: 'https://www.argentina.gob.ar/sites/default/files/ea-43anivmtelongdon_3.jpg',
+      alt: 'Soldados argentinos en Monte Longdon'
+    }
+  },
+  
+   {
+    title: 'Fin de la guerra, continuidad de la disputa diplomática',
+    date: '14 de junio de 1982',
+    datetime: '1982-06-14',
+    link: {
+      href: 'https://www.argentina.gob.ar/noticias/fin-de-la-guerra-continuidad-de-la-disputa-diplomatica',
+      isExternal: true
+    },
+    image: {
+      src: 'https://www.argentina.gob.ar/sites/default/files/14-06-21-fin_guerra_malvinas-4.jpg',
+      alt: 'Imagen de retirada de las tropas argentinas de las Islas Malvinas.'
     }
   }
 ]
@@ -73,70 +118,28 @@ const myEvents = [
     </p>
   </section>
 
-  <div id='timeline' class='mt-12'>
+  <div id='timeline' class='my-12'>
     <section class='flex flex-col gap-y-10'>
       <div class='font-balboa font-400 text-5xl font-semibold md:min-w-36'>
         <h2>LINEA DE TIEMPO</h2>
       </div>
-      <div>
-        <Timeline events={myEvents} />
+      <div class='flex w-full items-center justify-center'>
+        <div class='w-3xl pr-4'>
+          <Timeline events={events} />
+        </div>
       </div>
     </section>
 
-    {
-      allPostsByDate.length > 0 && (
-        <Section title='Posts'>
-          <ul class='flex flex-col gap-y-1.5 sm:gap-y-2'>
-            {allPostsByDate.map((p) => (
-              <li class='flex flex-col gap-x-2 sm:flex-row'>
-                <PostPreview post={p} />
-              </li>
-            ))}
-          </ul>
-          <Button title='More posts' class='w-fit self-end' href='/blog' style='ahead' />
-        </Section>
-      )
-    }
-
-    <Section title='Website List'>
-      <div class='grid grid-cols-1 gap-3 sm:grid-cols-2'>
-        <ProjectCard
-          href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-          heading='Lorem ipsum'
-          subheading='dolor sit amet, oratio ornatus explicari pro ex'
-          imagePath='/src/assets/projects/alex-tyson-2BAXJ7ha74s-unsplash.jpg'
-        />
-        <ProjectCard
-          href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-          heading='Lorem ipsum'
-          subheading='dolor sit amet, oratio ornatus explicari pro ex'
-          imagePath='/src/assets/projects/angelica-teran-Bk9hpaXHK4o-unsplash.jpg'
-        />
-        <ProjectCard
-          href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-          heading='Lorem ipsum'
-          subheading='dolor sit amet, oratio ornatus explicari pro ex'
-          imagePath='/src/assets/projects/kseniia-zapiatkina-yATU3rg8tNI-unsplash.jpg'
-        />
-        <ProjectCard
-          href='/projects'
-          heading='More projects'
-          subheading='Check out more projects'
-          imagePath='/src/assets/projects/wen-qiao-g_w8I64FiO0-unsplash.jpg'
-        />
-      </div>
-    </Section>
+    <style>
+      #quote-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100vw;
+        background-color: hsl(var(--muted));
+        z-index: -1;
+      }
+    </style>
   </div>
-
-  <style>
-    #quote-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 100vw;
-      background-color: hsl(var(--muted));
-      z-index: -1;
-    }
-  </style>
 </PageLayout>
