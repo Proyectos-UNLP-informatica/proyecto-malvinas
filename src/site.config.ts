@@ -48,9 +48,9 @@ export const theme: ThemeUserConfig = {
   header: {
     menu: [
       { title: 'Linea de tiempo', link: '/#timeline' },
-      { title: 'Relatos', link: '/docs' },
+      { title: 'Relatos', link: '/relatos' },
       { title: 'Portal de la memoria', link: '/projects' },
-      { title: 'Archivo', link: '/links' }
+      { title: 'Archivo', link: '/links' },
     ]
   },
 
