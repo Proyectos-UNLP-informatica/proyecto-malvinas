@@ -13,7 +13,7 @@ const combatientes = [
 ]
 ---
 
-<BaseLayout meta={{ title: 'Portal Malvinas' }}>
+<BaseLayout meta={{ title: 'Portal de la memoria' }}>
   <div class='flex flex-col gap-y-10'>
     <div class='flex flex-col items-center justify-between gap-4 md:flex-row'>
       <h1 class='font-balboa text-4xl md:text-6xl'>Portal Malvinas</h1>
@@ -22,11 +22,14 @@ const combatientes = [
           placeholder='Buscar por nombre'
           class='placeholder:text-muted-foreground border-dark p-y-2 p-x-4 w-full rounded-md border-2 pr-10'
         />
-        <Icon
+        <button class=" flex bg-muted absolute end-3  top-1/2 -translate-y-1/2">
+        <span >Buscar</span>
+          <Icon
           aria-label='Search Icon'
           name='search'
-          class='text-muted-foreground absolute end-3 top-1/2 size-5 -translate-y-1/2'
+          class='text-muted-foreground  size-5 '
         />
+        </button>
       </div>
     </div>
 
