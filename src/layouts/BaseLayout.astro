@@ -11,10 +11,12 @@ import '@/assets/styles/app.css'
 interface Props {
   meta: SiteMeta
   highlightColor?: string
+  class?: string
 }
 
 const {
   meta: { articleDate, description = config.description, ogImage, title },
+  class: className,
   highlightColor
 } = Astro.props
 ---
@@ -25,7 +27,7 @@ const {
     <ThemeProvider />
   </head>
 
-  <body class='flex justify-center bg-background text-foreground'>
+  <body class='bg-background text-foreground flex justify-center'>
     {
       highlightColor && (
         <div
@@ -35,8 +37,9 @@ const {
         />
       )
     }
-    <div class='w-full max-w-[70rem] px-4 sm:px-7 lg:px-10'>
+    <div class={'w-full max-w-[70rem] px-4 sm:px-7 lg:px-10 ' + className}>
       <Header />
+      <div class='h-28'></div>
       <slot />
       <Footer />
     </div>

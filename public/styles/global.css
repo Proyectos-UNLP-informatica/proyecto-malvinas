@@ -1,26 +1,24 @@
 /* Animation */
-@keyframes fade-in-up {
+@keyframes fade-in-main {
   0% {
-    transform: translateY(2rem);
     opacity: 0;
   }
   100% {
-    transform: translateY(0);
     opacity: 1;
   }
 }
-.animate {
+.animate-main {
   opacity: 0;
-  animation: 300ms fade-in-up;
+  animation: 1000ms fade-in-main 500ms;
   animation-fill-mode: forwards;
 }
-@media (prefers-reduced-motion) {
-  .animate {
+/* @media (prefers-reduced-motion) {
+  .animate-main {
     opacity: 0;
-    animation: 100ms fade-in-up;
+    animation: 100ms fade-in-main;
     animation-fill-mode: forwards;
   }
-}
+} */
 #content-header {
   animation-delay: 50ms;
 }

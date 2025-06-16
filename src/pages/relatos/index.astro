@@ -1,0 +1,119 @@
+---
+import { PostPreview } from 'astro-pure/components/pages'
+import { getBlogCollection, groupCollectionsByYear, sortMDByDate } from 'astro-pure/server'
+import PageLayout from '@/layouts/BaseLayout.astro'
+
+export const prerender = true
+
+const allPosts = await getBlogCollection()
+const allPostsByDate = sortMDByDate(allPosts)
+const allPostsByYear = groupCollectionsByYear(allPostsByDate)
+
+const meta = {
+  description: 'Relatos e historias de la Guerra de las Malvinas, contadas por sus protagonistas.',
+  title: 'Relatos de malvinas'
+}
+---
+
+<PageLayout meta={meta} highlightColor="hsl(var(--primary))">
+  
+  <!-- Title -->
+  <h1 class="pb-8 text-center font-bold text-6xl">{meta.title}</h1>
+
+  <!-- Search Form -->
+<form class="flex justify-center mb-16">
+  <div class="relative w-[531px]">
+    <input
+      type="text"
+      placeholder="Buscar relatos, héroes o acontecimientos..."
+      class="w-full h-[65px] ps-6 pe-14 border-black border-2 rounded-[1000px]"
+      aria-label="Buscar relatos"
+    />
+    <img
+      src="https://cdn-icons-png.flaticon.com/512/622/622669.png"
+      alt="Buscar"
+      class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 pointer-events-none"
+    />
+  </div>
+</form>
+
+
+  <main class="flex flex-row items-center justify-center gap-20">
+
+    <!-- Card 1 -->
+    <div class="hidden lg:block w-100 h-120 border-2 border-black rounded-[24px]">
+      <h1 class="text-sm text-center font-bold">Carta</h1>
+    </div>
+
+    <!-- Card 2 -->
+    <div>
+    <div class="w-105 h-140 border-2 border-black rounded-3xl p-10">
+      
+      <!-- content -->
+        <div class="flex flex-col gap-8">
+          
+          <!-- Badge de heroísmo -->
+          <span class="w-30 h-10 bg-red
+          text-sm font-bold rounded-full
+          flex items-center justify-center overflow-auto">
+            Heroísmo
+          </span>
+
+          <!-- Title -->
+          <h1 class="w-85 h-15 overflow-auto">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </h1>
+
+          <!-- Description -->
+          <p class="w-85 h-50 text-sm text-gray-600 overflow-auto">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+
+          <!-- Additional description -->
+          <div class="flex justify-between items-center overflow-auto">
+            <h1 class="text-xs font-bold">Título Izquierda</h1>
+            <h1 class="text-xs font-bold">Título Derecha</h1>
+          </div>
+
+          <!--button for more description -->
+    <div class="flex flex-row justify-center gap-2">
+          <!-- Botón de flecha izquierda -->
+          <button class="lg:hidden rounded-full bg-[hsl(var(--primary))] p-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+
+        <!--button for more description -->
+        <button class="w-85 h-12 bg-[hsl(var(--primary))]">
+          <span class="text-[hsl(var(--secondary))] text-sm font-bold">Leer relato</span>
+        </button>
+
+        <!--  Arrow button -->
+        <button class="lg:hidden rounded-full bg-[hsl(var(--primary))] p-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+    </div>
+      </div>
+    </div>
+
+    </div>
+
+    <!-- Card 3 -->
+    <div class="hidden lg:block w-100 h-120 border-2 border-black rounded-[24px]">
+      <h1 class="text-sm text-center font-bold">Carta</h1>
+    </div>
+
+
+  </main>
+
+
+</PageLayout>

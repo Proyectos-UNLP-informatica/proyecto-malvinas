@@ -2,119 +2,308 @@
 import config from 'virtual:config'
 
 import { Icon } from '../user'
+
+// Asegúrate de tener los iconos: 'settings', 'sun', 'moon', 'computer', 'menu'
 ---
 
 <header-component
-  class='group sticky top-4 z-30 mb-12 flex items-center justify-between rounded-xl border border-transparent max-sm:py-1 sm:rounded-2xl [&.not-top]:border-border [&.not-top]:bg-background [&.not-top]:px-1.5 dark:[&.not-top]:bg-muted'
+  class='[&.not-top]:bg-primary dark:[&.not-top]:bg-muted group fixed left-0 z-30 flex h-14 w-full items-center justify-center px-1.5 md:h-16'
 >
-  <!-- <div
-      class='absolute -left-4 -top-8 -z-10 box-content hidden h-20 w-[calc(100%+2rem)] !duration-0 max-sm:group-[.expanded]:block max-sm:group-[.expanded.not-top]:hidden max-sm:group-[.expanded]:bg-white dark:max-sm:group-[.expanded]:bg-muted'
+  <div class='flex w-full max-w-[70rem] items-center justify-between px-4 lg:px-10'>
+    <a
+      class='dark:text-accent group-[.not-top]:color-white group-[.not-top]:hover:text-secondary z-30 text-xl font-semibold'
+      style='transition:margin-inline 0.3s'
+      href='/'
+      aria-label='Brand'
     >
-    </div> -->
-  <a
-    class='z-30 text-xl font-semibold group-[.not-top]:ms-2 sm:group-[.not-top]:ms-3'
-    style='transition:margin-inline 0.3s'
-    href='/'
-    aria-label='Brand'>{config.title}</a
-  >
+      {config.title}
+    </a>
 
-  <div class='flex items-center gap-x-2'>
-    {/* Menu links */}
-    <div
-      id='headerExpandConetent'
-      class='end-0 start-0 top-12 grid border border-transparent group-[.not-top]:rounded-xl group-[.expanded]:opacity-100 dark:group-[.expanded.not-top]:bg-muted max-sm:absolute max-sm:opacity-0 max-sm:group-[.not-top]:border-border max-sm:group-[.expanded.not-top]:bg-background max-sm:group-[.not-top]:px-4 max-sm:group-[.not-top]:py-2 sm:grid-rows-1'
-    >
-      <div class='flex flex-col items-center justify-center overflow-hidden sm:flex-row'>
-        {
-          config.header.menu.map((item) => (
-            <a
-              href={item.link}
-              class='w-full flex-none grow py-2 text-right font-medium transition-none hover:text-primary sm:w-fit sm:px-3'
-              aria-label='Nav menu item'
-            >
-              {item.title}
-            </a>
-          ))
-        }
-        <!-- <div class='flex w-full grow flex-row justify-end gap-x-3 sm:w-fit sm:gap-x-5'>
-          <a class='px-1 py-2 transition-none sm:px-2' href='/search' title='Search'>
-            <span class='sr-only'>Search</span>
-            <Icon name='search' class='size-5' />
-          </a>
-        </div> -->
+    <div class='flex items-center gap-x-2'>
+      {/* Menu links */}
+      <div
+        id='headerExpandContent'
+        class='dark:group-[.expanded.not-top]:bg-muted max-sm:group-[.expanded.not-top]:bg-primary end-0 start-0 top-12 grid border border-transparent group-[.not-top]:rounded-b-xl group-[.expanded]:opacity-100 max-sm:absolute max-sm:opacity-0 max-sm:group-[.not-top]:px-4 max-sm:group-[.not-top]:py-2 sm:grid-rows-1'
+      >
+        <div
+          class='dark:text-accent group-[.not-top]:color-white flex flex-col items-center justify-center overflow-hidden sm:flex-row'
+        >
+          {
+            config.header.menu.map((item) => (
+              <a
+                href={item.link}
+                class='group-[.not-top]:hover:text-secondary dark:group-[.not-top]:hover:text-primary w-full flex-none grow px-5 py-2 text-right font-medium transition-none sm:w-fit'
+                aria-label='Nav menu item'
+              >
+                {item.title}
+              </a>
+            ))
+          }
+        </div>
       </div>
-    </div>
 
-    <!-- buttons -->
-    <div class='z-30 flex gap-x-4 group-[.not-top]:gap-x-2' style='transition:gap 0.3s'>
-      <button
-        id='toggleDarkMode'
-        class='group/dark box-content size-5 rounded-md border p-1.5 transition-colors hover:bg-border sm:group-[.not-top]:rounded-xl'
-      >
-        <span class='sr-only'>Dark Theme</span>
-        <Icon class='size-5 group-hover/dark:text-primary' name='person' />
-        <!-- <Icon class='system size-5 group-hover/dark:text-primary' name='computer' /> -->
-        <!-- <Icon class='light hidden size-5 group-hover/dark:text-primary' name='sun' /> -->
-        <!-- <Icon class='dark hidden size-5 group-hover/dark:text-primary' name='moon' /> -->
-      </button>
-      <button
-        id='toggleMenu'
-        class='rounded-md border p-1.5 transition-colors hover:bg-border sm:hidden sm:group-[.not-top]:rounded-xl'
-      >
-        <span class='sr-only'>Menu</span>
-        <Icon class='size-5' name='menu' />
-      </button>
+      {/* Buttons container */}
+      <div class='relative z-30 flex gap-x-4 group-[.not-top]:gap-x-2' style='transition:gap 0.3s'>
+        {/* Settings Panel Toggle Button */}
+        <button
+          id='toggleSettingsPanel'
+          aria-label='Abrir panel de configuración'
+          aria-expanded='false'
+          aria-controls='settingsPanel'
+          class='group/accesibility bg-primary group-[.not-top]:bg-secondary box-content flex items-center justify-center rounded-xl p-1.5 transition-colors hover:opacity-80'
+        >
+          <span class='sr-only'>Abrir Configuración</span>
+          <Icon class='color-secondary group-[.not-top]:color-primary size-6' name='person' />
+        </button>
+
+        {/* Settings Panel Content */}
+        <div
+          id='settingsPanel'
+          class='invisible absolute right-0 top-full z-40 mt-2 rounded-lg border border-neutral-200 bg-white p-4 opacity-0 shadow-xl transition-all duration-300 group-[.settings-panel-expanded]:visible group-[.settings-panel-expanded]:opacity-100 dark:border-neutral-700 dark:bg-neutral-800'
+          role='region'
+          aria-labelledby='settingsPanelTitle'
+        >
+          <h3
+            id='settingsPanelTitle'
+            class='mb-3 text-lg font-semibold text-neutral-800 dark:text-neutral-100'
+            aria-label='Panel de configuración'
+          >
+            Configuración
+          </h3>
+
+          <div class='mb-4'>
+            <p class='mb-2 text-sm font-medium text-neutral-700 dark:text-neutral-300'>Tema</p>
+            <div class='flex gap-2'>
+              <button
+                data-set-theme='light'
+                class='theme-btn flex flex-1 items-center justify-center gap-1 rounded-md border p-2 text-sm hover:bg-neutral-100 dark:border-neutral-600 dark:hover:bg-neutral-700'
+              >
+                <Icon name='sun' class='size-4' /> Claro
+              </button>
+              <button
+                data-set-theme='dark'
+                class='theme-btn flex flex-1 items-center justify-center gap-1 rounded-md border p-2 text-sm hover:bg-neutral-100 dark:border-neutral-600 dark:hover:bg-neutral-700'
+              >
+                <Icon name='moon' class='size-4' /> Oscuro
+              </button>
+              <button
+                data-set-theme='system'
+                class='theme-btn flex flex-1 items-center justify-center gap-1 rounded-md border p-2 text-sm hover:bg-neutral-100 dark:border-neutral-600 dark:hover:bg-neutral-700'
+              >
+                <Icon name='computer' class='size-4' /> Sistema
+              </button>
+            </div>
+          </div>
+
+          <div class='mb-4'>
+            <p class='mb-2 text-sm font-medium text-neutral-700 dark:text-neutral-300'>
+              Tamaño de Fuente
+            </p>
+            <div class='flex gap-2'>
+              <button
+                data-set-fontsize='sm'
+                class='fontsize-btn flex-1 rounded-md border p-2 text-sm hover:bg-neutral-100 dark:border-neutral-600 dark:hover:bg-neutral-700'
+                >Pequeño</button
+              >
+              <button
+                data-set-fontsize='base'
+                class='fontsize-btn flex-1 rounded-md border p-2 text-sm hover:bg-neutral-100 dark:border-neutral-600 dark:hover:bg-neutral-700'
+                >Normal</button
+              >
+              <button
+                data-set-fontsize='lg'
+                class='fontsize-btn flex-1 rounded-md border p-2 text-sm hover:bg-neutral-100 dark:border-neutral-600 dark:hover:bg-neutral-700'
+                >Grande</button
+              >
+            </div>
+          </div>
+
+          <div>
+            <p class='mb-2 text-sm font-medium text-neutral-700 dark:text-neutral-300'>
+              Fuente Principal
+            </p>
+            <select
+              id='fontFamilySelector'
+              class='focus:ring-primary w-full rounded-md border border-neutral-300 bg-white p-2 text-neutral-900 focus:ring-2 dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-100'
+            >
+              <option value='Montserrat'>Original</option>
+              <option value='system-ui, sans-serif'>Facil lectura</option>
+              <option value="'Courier New', monospace">Courier New (Monospace)</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Mobile Menu Toggle Button */}
+        <button
+          id='toggleMenu'
+          class='group-[.not-top]:bg-secondary bg-primary color-secondary group-[.not-top]:color-primary rounded-xl p-1.5 transition-colors sm:hidden'
+          aria-label='Abrir menú de navegación'
+          aria-expanded='false'
+          aria-controls='headerExpandContent'
+        >
+          <span class='sr-only'>Menu</span>
+          <Icon class='size-5' name='menu' />
+        </button>
+      </div>
     </div>
   </div>
 </header-component>
 
-{/* Use inline to load icon quicker firstly */}
 <script is:inline>
-  const toggleDarkModeElement = document.getElementById('toggleDarkMode')
-  if (toggleDarkModeElement) {
-    toggleDarkModeElement.dataset.theme = localStorage.getItem('theme') || 'system'
-  }
-</script>
-<script>
-  import { setTheme, showToast } from '../../utils'
+  // Aplica el tema y las preferencias de fuente guardadas lo antes posible
+  // para evitar FOUC (Flash Of Unstyled Content).
 
-  const SHOW_SCROLL_Y = 600 // px
-  
+  // 1. Aplicar Tema
+  const storedTheme = localStorage.getItem('theme') || 'system'
+  document.documentElement.dataset.theme = storedTheme // 'light', 'dark', o 'system'
+
+  let effectiveTheme = storedTheme
+  if (storedTheme === 'system') {
+    effectiveTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  }
+  if (effectiveTheme === 'dark') {
+    document.documentElement.classList.add('dark')
+  } else {
+    document.documentElement.classList.remove('dark')
+  }
+  // Actualizar meta theme-color (opcional, si tu setTheme no lo hace o quieres consistencia temprana)
+  const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+  if (metaThemeColor) {
+    metaThemeColor.setAttribute('content', effectiveTheme === 'dark' ? '#0B0B10' : '#FCFCFD')
+  }
+
+  // 2. Aplicar Tamaño de Fuente
+  const storedFontSize = localStorage.getItem('fontSize')
+  if (storedFontSize) {
+    document.documentElement.dataset.fontSize = storedFontSize // 'sm', 'base', 'lg'
+  }
+
+  // 3. Aplicar Familia de Fuentes
+  const storedFontFamily = localStorage.getItem('fontFamily')
+  const defaultFontFamily = 'system-ui, sans-serif' // Define un fallback
+  document.documentElement.style.setProperty(
+    '--font-family-main',
+    storedFontFamily || defaultFontFamily
+  )
+</script>
+
+<script>
+  // Asegúrate que este import coincida con la ubicación de tu archivo utils
+  import { setTheme as applyThemeUtil, showToast } from '../../utils'
+
+  const SHOW_SCROLL_Y = 20 // px
+
   class Header extends HTMLElement {
     constructor() {
       super()
     }
 
     connectedCallback() {
-      // Header
       let preScrollY = window.scrollY
-      
+      const rootElement = document.documentElement
+
       this.classList.toggle('not-top', preScrollY > 20)
       window.addEventListener('scroll', () => {
-        console.log(window.scrollY)
         this.classList.toggle('not-top', window.scrollY > SHOW_SCROLL_Y)
-        // this.dataset.show = (window.scrollY < 350 || window.scrollY < preScrollY).toString()
-        this.dataset.show = "true"
+        this.dataset.show = 'true'
         preScrollY = window.scrollY
       })
 
-      // Dark Mode
-      const darkModeBtn = this.querySelector('#toggleDarkMode') as HTMLElement
-      darkModeBtn.addEventListener('click', () => {
-        // Old way: dispatch event
-        // const toggleDarkModeEvent = new CustomEvent('theme-change', {
-        //   detail: { theme: localStorage.getItem('theme') === 'light' ? 'dark' : 'light' }
-        // })
-        // document.dispatchEvent(toggleDarkModeEvent)
-        const newTheme = setTheme(undefined, true)
-        darkModeBtn.dataset.theme = newTheme
-        showToast({ message: `Set theme to ${newTheme}` })
+      // Elementos del DOM (con verificación)
+      const toggleMenuBtn = this.querySelector('#toggleMenu')
+      const toggleSettingsPanelBtn = this.querySelector('#toggleSettingsPanel')
+      const settingsPanel = this.querySelector('#settingsPanel')
+      const fontFamilySelector = this.querySelector('#fontFamilySelector')
+
+      // Mobile Menu
+      if (toggleMenuBtn) {
+        toggleMenuBtn.addEventListener('click', () => {
+          const isExpanded = this.classList.toggle('expanded')
+          toggleMenuBtn.setAttribute('aria-expanded', isExpanded.toString())
+          if (isExpanded && this.classList.contains('settings-panel-expanded')) {
+            this.classList.remove('settings-panel-expanded')
+            toggleSettingsPanelBtn?.setAttribute('aria-expanded', 'false')
+          }
+        })
+      }
+
+      // Settings Panel
+      if (toggleSettingsPanelBtn && settingsPanel) {
+        toggleSettingsPanelBtn.addEventListener('click', (event) => {
+          event.stopPropagation()
+          const isSettingsExpanded = this.classList.toggle('settings-panel-expanded')
+          toggleSettingsPanelBtn.setAttribute('aria-expanded', isSettingsExpanded.toString())
+          if (isSettingsExpanded && this.classList.contains('expanded')) {
+            this.classList.remove('expanded')
+            toggleMenuBtn?.setAttribute('aria-expanded', 'false')
+          }
+        })
+
+        // Cerrar panel de configuración si se hace clic fuera
+        document.addEventListener('click', () => {
+          // Verificar que settingsPanel y toggleSettingsPanelBtn no sean null antes de llamar a .contains
+
+          this.classList.remove('settings-panel-expanded')
+          toggleSettingsPanelBtn.setAttribute('aria-expanded', 'false')
+        })
+
+        settingsPanel.addEventListener('click', (event) => {
+          event.stopPropagation() // Evita que el clic en el panel cierre el panel
+        })
+      }
+
+      // Theme buttons inside panel
+      this.querySelectorAll('.theme-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const themeToSet = (btn as HTMLElement).dataset.setTheme
+          if (themeToSet && applyThemeUtil) {
+            // applyThemeUtil es tu función importada
+            const returnedTheme = applyThemeUtil(themeToSet, true) // setTheme de utils maneja localStorage y la clase .dark
+            rootElement.dataset.theme = returnedTheme // 'light', 'dark' o 'system' para selectores CSS
+            showToast({ message: `Tema cambiado a ${returnedTheme}` })
+          }
+        })
       })
 
-      // Menu
-      this.querySelector('#toggleMenu')?.addEventListener('click', () => {
-        this.classList.toggle('expanded')
+      // Font Size buttons
+      this.querySelectorAll('.fontsize-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const newSize = (btn as HTMLElement).dataset.setFontsize // 'sm', 'base', 'lg'
+          if (newSize) {
+            rootElement.dataset.fontSize = newSize
+            localStorage.setItem('fontSize', newSize)
+            showToast({
+              message: `Tamaño de fuente: ${newSize === 'sm' ? 'Pequeño' : newSize === 'base' ? 'Normal' : 'Grande'}`
+            })
+          }
+        })
       })
+      // Aplicar tamaño de fuente inicial por si el script is:inline fallara o para consistencia
+      const currentFontSize = localStorage.getItem('fontSize')
+      if (currentFontSize) {
+        rootElement.dataset.fontSize = currentFontSize
+      }
+
+      // Font Family selector
+      if (fontFamilySelector instanceof HTMLSelectElement) {
+        // Chequeo de tipo más robusto
+        const currentFontFamily =
+          localStorage.getItem('fontFamily') ||
+          getComputedStyle(rootElement).getPropertyValue('font-family').trim() ||
+          'system-ui, sans-serif'
+
+        fontFamilySelector.value = currentFontFamily
+
+        fontFamilySelector.addEventListener('change', (event) => {
+          const newFontFamily = (event.target as HTMLSelectElement).value
+          // if (newFontFamily !== "Montse"
+          rootElement.style.setProperty('font-family', newFontFamily)
+          localStorage.setItem('fontFamily', newFontFamily)
+          showToast({ message: `Fuente cambiada` })
+        })
+        // Asegurar que la variable CSS está seteada al inicio si no lo hizo is:inline
+        rootElement.style.setProperty('font-family', fontFamilySelector.value)
+      }
     }
   }
 
@@ -122,34 +311,30 @@ import { Icon } from '../user'
 </script>
 
 <style>
+  /* Estilos existentes ... */
   header-component {
     transition:
       padding 0.3s,
       transform 0.3s,
       margin-inline 0.3s,
       border 0.15s,
-      background-color 0.15s;
-
-    &.not-top {
-      box-shadow:
-        rgb(255, 255, 255) 0px 0px 0px 0px,
-        rgba(24, 24, 27, 0.08) 0px 0px 0px 1px,
-        rgba(39, 39, 42, 0.08) 0px 10px 15px -3px,
-        rgba(39, 39, 42, 0.08) 0px 4px 6px -4px;
-    }
-    &[data-show='false']:not(.expanded) {
-      transform: translateY(-5rem);
-    }
-  }
-  @media (min-width: 800px) {
-    header-component.not-top {
-      margin-inline: 8%;
-    }
+      background-color 0.3s;
   }
 
-  /* header menu */
+  header-component.not-top {
+    box-shadow:
+      rgb(255, 255, 255) 0px 0px 0px 0px,
+      rgba(24, 24, 27, 0.08) 0px 0px 0px 1px,
+      rgba(39, 39, 42, 0.08) 0px 10px 15px -3px,
+      rgba(39, 39, 42, 0.08) 0px 4px 6px -4px;
+  }
+  header-component[data-show='false']:not(.expanded):not(.settings-panel-expanded) {
+    transform: translateY(-5rem);
+  }
+
+  /* header menu (mobile) */
   @media (max-width: 640px) {
-    #headerExpandConetent {
+    #headerExpandContent {
       grid-template-rows: 0fr;
       transition:
         opacity 0.3s,
@@ -157,57 +342,73 @@ import { Icon } from '../user'
         border-color 0.15s,
         grid-template-rows 0.3s;
     }
-    .expanded #headerExpandConetent {
+    .expanded #headerExpandContent {
       grid-template-rows: 1fr;
     }
-    .expanded.not-top #headerExpandConetent {
+    .expanded.not-top #headerExpandContent {
       box-shadow:
         rgb(255, 255, 255) 0px 0px 0px 0px,
         rgba(24, 24, 27, 0.08) 0px 0px 0px 1px,
         rgba(39, 39, 42, 0.08) 0px 10px 15px -3px,
         rgba(39, 39, 42, 0.08) 0px 4px 6px -4px;
     }
-
-    /* header component after */
-    header-component #headerExpandConetent::after {
-      box-sizing: content-box;
-      content: '';
-      position: absolute;
-      inset-inline: calc(-1rem - 1px);
-      bottom: 0;
-      top: -5rem;
-      z-index: -1;
-      transition: 0.3s;
-      visibility: hidden;
-      opacity: 0;
-      border-bottom: 1px solid transparent;
-    }
-    header-component:not(.not-top) #headerExpandConetent::after {
-      visibility: visible;
-      bottom: -1rem;
-      opacity: 1;
-      background-color: hsl(var(--muted) / var(--un-bg-opacity, 1));
-      border-bottom-color: hsl(var(--border) / var(--un-border-opacity, 1));
-    }
   }
 
-  /* dark light mode toggle */
-  #toggleDarkMode {
-    &[data-theme='dark'] {
-      & .system {
-        display: none;
-      }
-      & .dark {
-        display: block;
-      }
-    }
-    &[data-theme='light'] {
-      & .system {
-        display: none;
-      }
-      .light {
-        display: block;
-      }
-    }
+  /* NUEVO: Estilos para Font Size y Font Family */
+  :root {
+    font-family:
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      'Open Sans',
+      'Helvetica Neue',
+      sans-serif;
+    --font-size-sm: 0.875rem; /* 14px */
+    --font-size-base: 1rem; /* 16px */
+    --font-size-lg: 1.125rem; /* 18px */
+
+    font-size: var(--font-size-base);
+    font-family: var(--font-family-main);
+  }
+
+  html[data-font-size='sm'] {
+    font-size: var(--font-size-sm);
+  }
+  html[data-font-size='lg'] {
+    font-size: var(--font-size-lg);
+  }
+  html:not([data-font-size='sm']):not([data-font-size='lg']) {
+    font-size: var(--font-size-base);
+  }
+
+  /* Estilos para los botones del panel de configuración */
+  #settingsPanel .theme-btn,
+  #settingsPanel .fontsize-btn {
+    transition:
+      background-color 0.2s,
+      border-color 0.2s;
+  }
+  #settingsPanel .theme-btn:focus,
+  #settingsPanel .fontsize-btn:focus,
+  #settingsPanel #fontFamilySelector:focus {
+    /* Considera usar las variables de color de tu tema para el outline */
+    outline: 2px solid hsl(var(--primary) / 0.7);
+    outline-offset: 2px;
+  }
+
+  /* Indica la selección activa */
+  html[data-theme='light'] #settingsPanel .theme-btn[data-set-theme='light'],
+  html[data-theme='dark'] #settingsPanel .theme-btn[data-set-theme='dark'],
+  html[data-theme='system'] #settingsPanel .theme-btn[data-set-theme='system'],
+  html[data-font-size='sm'] #settingsPanel .fontsize-btn[data-set-fontsize='sm'],
+  html[data-font-size='base'] #settingsPanel .fontsize-btn[data-set-fontsize='base'],
+  html[data-font-size='lg'] #settingsPanel .fontsize-btn[data-set-fontsize='lg'] {
+    background-color: hsl(var(--primary) / 0.15);
+    border-color: hsl(var(--primary) / 0.5);
   }
 </style>

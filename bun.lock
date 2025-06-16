@@ -7,12 +7,14 @@
         "@astrojs/check": "^0.9.4",
         "@astrojs/rss": "^4.0.11",
         "@astrojs/vercel": "^8.1.4",
+        "@fontsource-variable/montserrat": "^5.2.5",
+        "@fontsource-variable/roboto": "^5.2.5",
         "@playform/compress": "^0.1.9",
         "@unocss/preset-wind3": "^66.1.3",
         "@unocss/reset": "^66.1.3",
         "@waline/client": "^3.5.7",
         "astro": "^5.8.1",
-        "astro-pure": "1.2.7",
+        "astro-pure": "workspace:1.2.7",
         "katex": "^0.16.22",
         "rehype-katex": "^7.0.1",
         "remark-math": "^6.0.0",
@@ -26,6 +28,7 @@
         "eslint-plugin-astro": "^1.3.1",
         "prettier": "^3.5.3",
         "prettier-plugin-astro": "^0.14.1",
+        "prettier-plugin-tailwindcss": "^0.6.12",
         "rollup-plugin-visualizer": "^6.0.1",
         "typescript-eslint": "^8.33.0",
       },
@@ -181,6 +184,10 @@
     "@eslint/object-schema": ["@eslint/object-schema@2.1.6", "https://registry.npmmirror.com/@eslint/object-schema/-/object-schema-2.1.6.tgz", {}, "sha512-RBMg5FRL0I0gs51M/guSAj5/e14VQ4tpZnQNWwuDT66P14I43ItmPfIZRhO9fUVIPOAQXU47atlywZ/czoqFPA=="],
 
     "@eslint/plugin-kit": ["@eslint/plugin-kit@0.3.1", "https://registry.npmmirror.com/@eslint/plugin-kit/-/plugin-kit-0.3.1.tgz", { "dependencies": { "@eslint/core": "^0.14.0", "levn": "^0.4.1" } }, "sha512-0J+zgWxHN+xXONWIyPWKFMgVuJoZuGiIFu8yxk7RJjxkzpGmyja5wRFqZIVtjDVOQpV+Rw0iOAjYPE2eQyjr0w=="],
+
+    "@fontsource-variable/montserrat": ["@fontsource-variable/montserrat@5.2.5", "", {}, "sha512-Mfg/AiXwhPLAAgLCqzugFUs/PLprbHzXMhPVrf35q5od4/wHjVqtm0bI000tKGUGDZ3gDpId/+cqufcYHAAAEQ=="],
+
+    "@fontsource-variable/roboto": ["@fontsource-variable/roboto@5.2.5", "", {}, "sha512-csqBSOWXv0h5IbPhEqYJua6/nxl7dSNZbBOMeXSO9aqzgPw3GpfgC9kL5M6ULFLRaoDoBD4U9QctoDLKMaTyMg=="],
 
     "@humanfs/core": ["@humanfs/core@0.19.1", "https://registry.npmmirror.com/@humanfs/core/-/core-0.19.1.tgz", {}, "sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA=="],
 
@@ -1223,6 +1230,8 @@
     "prettier": ["prettier@3.5.3", "https://registry.npmmirror.com/prettier/-/prettier-3.5.3.tgz", { "bin": { "prettier": "bin/prettier.cjs" } }, "sha512-QQtaxnoDJeAkDvDKWCLiwIXkTgRhwYDEQCghU9Z6q03iyek/rxRh/2lC3HB7P8sWT2xC/y5JDctPLBIGzHKbhw=="],
 
     "prettier-plugin-astro": ["prettier-plugin-astro@0.14.1", "https://registry.npmmirror.com/prettier-plugin-astro/-/prettier-plugin-astro-0.14.1.tgz", { "dependencies": { "@astrojs/compiler": "^2.9.1", "prettier": "^3.0.0", "sass-formatter": "^0.7.6" } }, "sha512-RiBETaaP9veVstE4vUwSIcdATj6dKmXljouXc/DDNwBSPTp8FRkLGDSGFClKsAFeeg+13SB0Z1JZvbD76bigJw=="],
+
+    "prettier-plugin-tailwindcss": ["prettier-plugin-tailwindcss@0.6.12", "", { "peerDependencies": { "@ianvs/prettier-plugin-sort-imports": "*", "@prettier/plugin-pug": "*", "@shopify/prettier-plugin-liquid": "*", "@trivago/prettier-plugin-sort-imports": "*", "@zackad/prettier-plugin-twig": "*", "prettier": "^3.0", "prettier-plugin-astro": "*", "prettier-plugin-css-order": "*", "prettier-plugin-import-sort": "*", "prettier-plugin-jsdoc": "*", "prettier-plugin-marko": "*", "prettier-plugin-multiline-arrays": "*", "prettier-plugin-organize-attributes": "*", "prettier-plugin-organize-imports": "*", "prettier-plugin-sort-imports": "*", "prettier-plugin-style-order": "*", "prettier-plugin-svelte": "*" }, "optionalPeers": ["@ianvs/prettier-plugin-sort-imports", "@prettier/plugin-pug", "@shopify/prettier-plugin-liquid", "@trivago/prettier-plugin-sort-imports", "@zackad/prettier-plugin-twig", "prettier-plugin-astro", "prettier-plugin-css-order", "prettier-plugin-import-sort", "prettier-plugin-jsdoc", "prettier-plugin-marko", "prettier-plugin-multiline-arrays", "prettier-plugin-organize-attributes", "prettier-plugin-organize-imports", "prettier-plugin-sort-imports", "prettier-plugin-style-order", "prettier-plugin-svelte"] }, "sha512-OuTQKoqNwV7RnxTPwXWzOFXy6Jc4z8oeRZYGuMpRyG3WbuR3jjXdQFK8qFBMBx8UHWdHrddARz2fgUenild6aw=="],
 
     "prismjs": ["prismjs@1.30.0", "https://registry.npmmirror.com/prismjs/-/prismjs-1.30.0.tgz", {}, "sha512-DEvV2ZF2r2/63V+tK8hQvrR2ZGn10srHbXviTlcv7Kpzw8jWiNTqbVgjO3IY8RxrrOUF8VPMQQFysYYYv0YZxw=="],
 
