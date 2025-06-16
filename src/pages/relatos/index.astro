@@ -18,7 +18,7 @@ const meta = {
 <PageLayout meta={meta} highlightColor="hsl(var(--primary))">
   
   <!-- Title -->
-  <h1 class="pb-8 text-center font-bold text-3xl">{meta.title}</h1>
+  <h1 class="pb-8 text-center font-bold text-6xl">{meta.title}</h1>
 
   <!-- Search Form -->
 <form class="flex justify-center mb-16">
@@ -37,13 +37,16 @@ const meta = {
   </div>
 </form>
 
+
   <main class="flex flex-row items-center justify-center gap-20">
 
-    <div class="w-100 h-120 border-2 border-black rounded-[24px]">
+    <!-- Card 1 -->
+    <div class="hidden lg:block w-100 h-120 border-2 border-black rounded-[24px]">
       <h1 class="text-sm text-center font-bold">Carta</h1>
     </div>
 
-    <!-- Card -->
+    <!-- Card 2 -->
+    <div>
     <div class="w-105 h-140 border-2 border-black rounded-3xl p-10">
       
       <!-- content -->
@@ -79,15 +82,37 @@ const meta = {
           </div>
 
           <!--button for more description -->
-          <button class="w-85 h-12 bg-[hsl(var(--primary))]">
-            <span class="text-[hsl(var(--secondary))] text-sm font-bold">Leer relato</span>
+    <div class="flex flex-row justify-center gap-2">
+          <!-- Botón de flecha izquierda -->
+          <button class="lg:hidden rounded-full bg-[hsl(var(--primary))] p-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
           </button>
+
+        <!--button for more description -->
+        <button class="w-85 h-12 bg-[hsl(var(--primary))]">
+          <span class="text-[hsl(var(--secondary))] text-sm font-bold">Leer relato</span>
+        </button>
+
+        <!--  Arrow button -->
+        <button class="lg:hidden rounded-full bg-[hsl(var(--primary))] p-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+    </div>
       </div>
     </div>
 
-    <div class="w-100 h-120 border-2 border-black rounded-[24px]">
+    </div>
+
+    <!-- Card 3 -->
+    <div class="hidden lg:block w-100 h-120 border-2 border-black rounded-[24px]">
       <h1 class="text-sm text-center font-bold">Carta</h1>
     </div>
+
+
   </main>
 
 
