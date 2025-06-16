@@ -1,13 +1,9 @@
 ---
-import { PostPreview } from 'astro-pure/components/pages'
-import { getBlogCollection, groupCollectionsByYear, sortMDByDate } from 'astro-pure/server'
+
 import PageLayout from '@/layouts/BaseLayout.astro'
 
 export const prerender = true
 
-const allPosts = await getBlogCollection()
-const allPostsByDate = sortMDByDate(allPosts)
-const allPostsByYear = groupCollectionsByYear(allPostsByDate)
 
 const meta = {
   description: 'Relatos e historias de la Guerra de las Malvinas, contadas por sus protagonistas.',
